@@ -3,7 +3,6 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "st-256color"
-#define BROWSER "chromium"
 
 /* appearance */
 static const unsigned int borderpx  	 = 1;       /* border pixel of windows */
@@ -27,7 +26,7 @@ static const int sidepad            	 = 0;       /* horizontal padding of bar */
 static const int showbar            	 = 1;        /* 0 means no bar */
 static const int topbar             	 = 1;        /* 0 means bottom bar */
 static const char buttonbar[]      	 = "󰣇 ";
-static const char *fonts[]          	 = { "Iosevka:style:style=Regular:size=12", "IosevkaTerm Nerd Font Mono:style:medium:size=20" };
+static const char *fonts[]          	 = { "Iosevka:style:style=Regular:size=10", "IosevkaTerm Nerd Font Mono:style:medium:size=18" };
 static const char dmenufont[]       	 = "IosevkaTerm Nerd Font:size=12";
 static const char col_black[] 		 = "#1a1b26";
 static const char col_gray[] 		 = "#15161e";
@@ -167,7 +166,7 @@ static char dmenumon[2] 	   = "0"; /* component of dmenucmd, manipulated in spaw
 static const char *dmenucmd[] 	   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_white, "-sb", col_blue, "-sf", col_black, NULL };
 
 /* termcmd */
-static const char *termcmd[]  	   = { "st", NULL };
+static const char *termcmd[]  	   = { TERMINAL, NULL };
 
 /* volume control */
 static const char *vol_up[]   	   = { "volume", "up",   NULL };
