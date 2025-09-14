@@ -26,7 +26,7 @@ static const int sidepad            	 = 0;       /* horizontal padding of bar */
 static const int showbar            	 = 1;        /* 0 means no bar */
 static const int topbar             	 = 1;        /* 0 means bottom bar */
 static const char buttonbar[]      	 = "󰣇 ";
-static const char *fonts[]          	 = { "Iosevka:style:style=Regular:size=10", "IosevkaTerm Nerd Font Mono:style:medium:size=18" };
+static const char *fonts[]          	 = { "Iosevka:style:style=Medium:size=10", "Symbols Nerd Font:size=14" };
 static const char dmenufont[]       	 = "IosevkaTerm Nerd Font:size=12";
 static const char col_black[] 		 = "#1a1b26";
 static const char col_gray[] 		 = "#15161e";
@@ -242,6 +242,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_f,      		    setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      		    setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  		    setlayout,      {0} },
+	{ MODKEY|ControlMask,		XK_comma,  		    cyclelayout,    {.i = -1 } },
+	{ MODKEY|ALTKEY,                XK_comma, 		    cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_space,  		    togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_f,      		    togglefullscr,  {0} },
 	{ MODKEY,                       XK_s,      		    togglesticky,   {0} },
