@@ -188,6 +188,9 @@ static const char *browsercmd[]	   = { "chromium", NULL };
 /* dmenuemojicmd */
 static const char *emojicmd[]      = { "dmenuunicode",   NULL };
 
+/* wallcmd */
+static const char *wallcmd[]       = { "dmenu-wallpaper",   NULL };
+
 /* powermenu */
 static const char *pmenucmd[]      = { "pmenu", NULL };
 
@@ -208,11 +211,12 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,      		                    8)
 	{ MODKEY,                       XK_p,      		    spawn,          {.v = dmenucmd } },
 	{ MODKEY,             		XK_Return, 		    spawn,          {.v = termcmd } },
-	{ MODKEY,             		XK_w,          		    spawn,          {.v = browsercmd } },
+	{ MODKEY,             		XK_b,          		    spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_e,          		    spawn,          {.v = emojicmd } },
+	{ MODKEY,                       XK_w,          		    spawn,          {.v = wallcmd } },
 	{ MODKEY,                       XK_Print,      		    spawn,          {.v = sscmd } },
 	{ MODKEY|ALTKEY,                XK_x,          		    spawn,          {.v = pmenucmd } },
-	{ MODKEY,                       XK_b,      		    togglebar,      {0} },
+	{ MODKEY|ALTKEY,                XK_b,      		    togglebar,      {0} },
 	{ MODKEY,                       XK_i,      		    incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      		    incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      		    setmfact,       {.f = -0.05} },
