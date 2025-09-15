@@ -5,42 +5,42 @@
 #define TERMCLASS "st-256color"
 
 /* appearance */
-static const unsigned int borderpx  	 = 1;       /* border pixel of windows */
-static const unsigned int snap      	 = 32;      /* snap pixel */
-static const unsigned int gappih    	 = 5;       /* horiz inner gap between windows */
-static const unsigned int gappiv    	 = 5;       /* vert inner gap between windows */
-static const unsigned int gappoh    	 = 5;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    	 = 5;       /* vert outer gap between windows and screen edge */
-static       int smartgaps          	 = 0;       /* 1 means no outer gap when there is only one window */
-static const int swallowfloating    	 = 0;       /* 1 means swallow floating windows by default */
-static const unsigned int systraypinning = 0;       /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayonleft  = 0;       /* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 2;       /* systray spacing */
-static const int systraypinningfailfirst = 1;       /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const unsigned int systrayiconsize = 30;       /* systray icon size in px */
-static const int showsystray        	 = 1;        /* 0 means no systray */
-static const int user_bh            	 = 25;        /* 2 is the default spacing around the bar's font */
-static const int horizpadbar        	 = 2;        /* horizontal padding for statusbar */
-static const int vertpadbar         	 = 10;        /* vertical padding for statusbar */
-static const int vertpad            	 = 0;       /* vertical padding of bar */
-static const int sidepad            	 = 0;       /* horizontal padding of bar */
-static const int showbar            	 = 1;        /* 0 means no bar */
-static const int topbar             	 = 1;        /* 0 means bottom bar */
-static const char buttonbar[]      	 = "󰣇 ";
-static const char *fonts[]          	 = { "Iosevka:style:style=Medium:size=10", "Symbols Nerd Font:size=14" };
-static const char dmenufont[]       	 = "IosevkaTerm Nerd Font:size=12";
-static const char col_black[] 		 = "#1a1b26";
-static const char col_gray[] 		 = "#15161e";
-static const char col_blue[] 		 = "#7aa2f7";
-static const char col_orange[] 		 = "#ff9e64";
-static const char col_red[] 		 = "#f7768e";
-static const char col_pink[] 		 = "#ff007c";
-static const char col_green[] 		 = "#9ece6a";
-static const char col_cyan[] 		 = "#7dcfff";
-static const char col_yellow[] 		 = "#9ece6a";
-static const char col_magenta[] 	 = "#bb9af7";
-static const char col_white[] 	 	 = "#c0caf5";
-static const char *colors[][3]      	 = {
+static const unsigned int borderpx  	  = 1;       /* border pixel of windows */
+static const unsigned int snap      	  = 32;      /* snap pixel */
+static const unsigned int gappih    	  = 5;       /* horiz inner gap between windows */
+static const unsigned int gappiv    	  = 5;       /* vert inner gap between windows */
+static const unsigned int gappoh    	  = 5;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    	  = 5;       /* vert outer gap between windows and screen edge */
+static       int smartgaps          	  = 0;       /* 1 means no outer gap when there is only one window */
+static const int swallowfloating    	  = 0;       /* 1 means swallow floating windows by default */
+static const unsigned int systraypinning  = 0;       /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft   = 0;       /* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayspacing  = 2;       /* systray spacing */
+static const int systraypinningfailfirst  = 1;       /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const unsigned int systrayiconsize = 30;      /* systray icon size in px */
+static const int showsystray        	  = 1;        /* 0 means no systray */
+static const int user_bh            	  = 25;       /* 2 is the default spacing around the bar's font */
+static const int horizpadbar        	  = 2;        /* horizontal padding for statusbar */
+static const int vertpadbar         	  = 10;       /* vertical padding for statusbar */
+static const int vertpad            	  = 0;        /* vertical padding of bar */
+static const int sidepad            	  = 0;        /* horizontal padding of bar */
+static const int showbar            	  = 1;        /* 0 means no bar */
+static const int topbar             	  = 1;        /* 0 means bottom bar */
+static const char buttonbar[]      	  = "󰣇 ";
+static const char *fonts[]          	  = { "Iosevka:style:style=Medium:size=10", "Symbols Nerd Font:size=14" };
+static const char dmenufont[]       	  = "IosevkaTerm Nerd Font:size=12";
+static const char col_black[] 		  = "#1a1b26";
+static const char col_gray[] 		  = "#15161e";
+static const char col_blue[] 		  = "#7aa2f7";
+static const char col_orange[] 		  = "#ff9e64";
+static const char col_red[] 		  = "#f7768e";
+static const char col_pink[] 		  = "#ff007c";
+static const char col_green[] 		  = "#9ece6a";
+static const char col_cyan[] 		  = "#7dcfff";
+static const char col_yellow[] 		  = "#9ece6a";
+static const char col_magenta[] 	  = "#bb9af7";
+static const char col_white[] 	 	  = "#c0caf5";
+static const char *colors[][3]      	  = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_white, col_black, col_gray },
 	[SchemeBtn]  = { col_blue,  col_black, col_gray },
@@ -70,7 +70,7 @@ static const XPoint stickyicon[]    = { {0,0}, {4,0}, {4,8}, {2,6}, {0,8}, {0,0}
 static const XPoint stickyiconbb    = {4,8};	/* defines the bottom right corner of the polygon's bounding box (speeds up scaling) */
 
 /* tagging */
-static const char *tags[] = { "dev", "www", "sys", "doc", "vbox", "chat", "mus", "vid", "misc" };
+static const char *tags[] = { "dev", "sys", "www", "doc", "vbox", "chat", "mus", "vid", "misc" };
 static const char *alttags[] = { "[dev]", "[sys]", "[www]", "[doc]", "[vbox]", "[chat]", "[mus]", "[vid]", "[misc]" };
 
 static const char *tagsel[][2] = {
