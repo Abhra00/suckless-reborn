@@ -65,16 +65,16 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function     format                                                           argument            turn    signal */
-	{ run_command,  "%s",                                                            "echo ' '",         0,      -1 },
-	{ run_command,  "^c#ff9e64^  %s ^d^ ",                                          "slstatus-upd",     3600,   -1 },
-	{ cpu_perc,     "^b#f7768e^^c#1a1b26^ CPU ^b#414868^^c#f7768e^ %s%% ^d^ ",       NULL,               1,      -1 },
-	{ ram_free,     "^c#ff9e64^  %s ^d^ ",                                          NULL,               1,      -1 },
-	{ battery_perc, "^b#9ece6a^^c#1a1b26^ 󰁹 ^b#414868^^c#9ece6a^ %s%% ^d^ ",         "BAT1",             1,      -1 },
-	{ wifi_perc,   "^b#7dcfff^^c#1a1b26^ 󰤨 ^b#414868^^c#7dcfff^ %s%% ^d^ ",          "wlo1",             1,      -1 },
-	{ run_command,  "^b#7aa2f7^^c#1a1b26^  ^b#414868^^c#7aa2f7^ %s ^d^ ",           "slstatus-volume",  1,       1 },
-	{ datetime,     "^b#ff007c^^c#1a1b26^ 󰥔 ^b#414868^^c#ff007c^ %s ^d^ ",           "%H:%M",            1,      -1 },
-	{ datetime,     "^c#9d7cd8^ %s ^d^",                                            "%a▪%b(%d)▪%Y",     1,      -1 },
+	/* function     format                                                           argument            	     turn    signal */
+	{ run_command,  "%s",                                                            "echo ' '",         	     0,      -1 },
+	{ run_command,  "^c#ff9e64^  %s ^d^ ",                                          "cat ~/.cache/pkg_updates", 0,       2 },
+	{ cpu_perc,     "^b#f7768e^^c#1a1b26^ CPU ^b#414868^^c#f7768e^ %s%% ^d^ ",       NULL,               	     1,      -1 },
+	{ ram_free,     "^c#ff9e64^  %s ^d^ ",                                          NULL,               	     1,      -1 },
+	{ battery_perc, "^b#9ece6a^^c#1a1b26^ 󰁹 ^b#414868^^c#9ece6a^ %s%% ^d^ ",         "BAT1",             	     1,      -1 },
+	{ wifi_perc,   "^b#7dcfff^^c#1a1b26^ 󰤨 ^b#414868^^c#7dcfff^ %s%% ^d^ ",          "wlo1",             	     1,      -1 },
+	{ run_command,  "^b#7aa2f7^^c#1a1b26^  ^b#414868^^c#7aa2f7^ %s ^d^ ",           "slstatus-volume",  	     1,       1 },
+	{ datetime,     "^b#ff007c^^c#1a1b26^ 󰥔 ^b#414868^^c#ff007c^ %s ^d^ ",           "%H:%M",            	     1,      -1 },
+	{ datetime,     "^c#9d7cd8^ %s ^d^",                                            "%a▪%b(%d)▪%Y",     	     1,      -1 },
 };
 
 /* maximum output string length */
