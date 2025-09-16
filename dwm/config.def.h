@@ -103,7 +103,7 @@ static const Rule rules[] = {
 	{ NULL,       NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 	{ TERMCLASS,  "spterm",	NULL,		SPTAG(0),  1,	       1,	    0,        -1 },
 	{ TERMCLASS,  "spfm",	NULL,		SPTAG(1),  1,	       1,	    0,        -1 },
-	{ TERMCLASS,  "sprmpc",	NULL,		SPTAG(2),  1,	       1, 	    0,        -1 },
+	{ TERMCLASS,  "spmus",	NULL,		SPTAG(2),  1,	       1, 	    0,        -1 },
 };
 
 /* layout(s) */
