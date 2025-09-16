@@ -10,8 +10,8 @@ static int min_width 		     = 500;                    	/* minimum width when cen
 static const float menu_height_ratio = 4.0f;  			/* This is the ratio used in the original calculation */
 static const unsigned int alpha      = 0xff;     	        /* Amount of opacity. 0xff is opaque             */
 static const char *fonts[] 	     = {  	    		/* -fn option overrides fonts[0]; default X11 font or font set */
-	"IosevkaTerm Nerd Font:style=Medium:size=10",
-	"NotoColorEmoji:pixelsize=8:antialias=true:autohint=true"
+	"IosevkaTerm Nerd Font:style=Medium:size=12",
+	"NotoColorEmoji:pixelsize=12:antialias=true:autohint=true"
 };
 static const char *prompt      		 = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
