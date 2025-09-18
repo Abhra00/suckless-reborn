@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "FiraCode Nerd Font:pixelsize=18:antialias=true:autohint=true";
+static char *font = "IosevkaTerm Nerd Font:pixelsize=18:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = { "NotoColorEmoji:pixelsize=16:antialias=true:autohint=true" };
 /* horizontal & vertical padding */
@@ -43,7 +43,7 @@ char *vtiden = "\033[?62c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
-static float chscale = 1.3;
+static float chscale = 1.0;
 
 /*
  * word delimiter string

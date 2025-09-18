@@ -35,6 +35,7 @@
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
+#include <X11/Xresource.h>
 #include <X11/Xutil.h>
 #ifdef XINERAMA
 #include <X11/extensions/Xinerama.h>
@@ -70,6 +71,21 @@
 #define SPTAGMASK   			(((1 << LENGTH(scratchpads))-1) << LENGTH(tags))
 #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
 #define TRUNC(X,A,B)            (MAX((A), MIN((X), (B))))
+#define XRDB_LOAD_COLOR(R,V)    if (XrmGetResource(xrdb, R, NULL, &type, &value) == True) { \
+                                  if (value.addr != NULL && strnlen(value.addr, 8) == 7 && value.addr[0] == '#') { \
+                                    int i = 1; \
+                                    for (; i <= 6; i++) { \
+                                      if (value.addr[i] < 48) break; \
+                                      if (value.addr[i] > 57 && value.addr[i] < 65) break; \
+                                      if (value.addr[i] > 70 && value.addr[i] < 97) break; \
+                                      if (value.addr[i] > 102) break; \
+                                    } \
+                                    if (i == 7) { \
+                                      strncpy(V, value.addr, 7); \
+                                      V[7] = '\0'; \
+                                    } \
+                                  } \
+                                }
 
 
 #define SYSTEM_TRAY_REQUEST_DOCK    0
@@ -228,6 +244,7 @@ static void grabkeys(void);
 static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
+static void loadxrdb(void);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
@@ -299,6 +316,7 @@ static Client *wintosystrayicon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
+static void xrdb(const Arg *arg);
 static void zoom(const Arg *arg);
 
 static pid_t getparentprocess(pid_t p);
@@ -1028,6 +1046,12 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 					buf[7] = '\0';
 					drw_clr_create(drw, &drw->scheme[ColBg], buf);
 					i += 7;
+				} else if (text[i] == 'C') {
+					int c = atoi(text + ++i);
+					drw_clr_create(drw, &drw->scheme[ColFg], termcolor[c]);
+				} else if (text[i] == 'B') {
+					int c = atoi(text + ++i);
+					drw_clr_create(drw, &drw->scheme[ColBg], termcolor[c]);
 				} else if (text[i] == 'd') {
 					drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
 					drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
@@ -1412,6 +1436,61 @@ killclient(const Arg *arg)
 		XSetErrorHandler(xerror);
 		XUngrabServer(dpy);
 	}
+}
+
+void
+loadxrdb()
+{
+  Display *display;
+  char * resm;
+  XrmDatabase xrdb;
+  char *type;
+  XrmValue value;
+
+  display = XOpenDisplay(NULL);
+
+  if (display != NULL) {
+    resm = XResourceManagerString(display);
+
+    if (resm != NULL) {
+      xrdb = XrmGetStringDatabase(resm);
+
+      if (xrdb != NULL) {
+        XRDB_LOAD_COLOR("dwm.background", col_black);
+        XRDB_LOAD_COLOR("dwm.color1",     col_red);
+        XRDB_LOAD_COLOR("dwm.color2",     col_green);
+        XRDB_LOAD_COLOR("dwm.color3",     col_yellow);
+        XRDB_LOAD_COLOR("dwm.color4",     col_blue);
+        XRDB_LOAD_COLOR("dwm.color5",     col_magenta);
+        XRDB_LOAD_COLOR("dwm.color6",     col_cyan);
+        XRDB_LOAD_COLOR("dwm.foreground", col_white);
+        XRDB_LOAD_COLOR("dwm.color16",    col_gray);
+        XRDB_LOAD_COLOR("dwm.color17",    col_pink);
+        XRDB_LOAD_COLOR("dwm.color18",    col_orange);
+        XRDB_LOAD_COLOR("color0",         termcol0);
+        XRDB_LOAD_COLOR("color1",         termcol1);
+        XRDB_LOAD_COLOR("color2",         termcol2);
+        XRDB_LOAD_COLOR("color3",         termcol3);
+        XRDB_LOAD_COLOR("color4",         termcol4);
+        XRDB_LOAD_COLOR("color5",         termcol5);
+        XRDB_LOAD_COLOR("color6",         termcol6);
+        XRDB_LOAD_COLOR("color7",         termcol7);
+        XRDB_LOAD_COLOR("color8",         termcol8);
+        XRDB_LOAD_COLOR("color9",         termcol9);
+        XRDB_LOAD_COLOR("color10",        termcol10);
+        XRDB_LOAD_COLOR("color11",        termcol11);
+        XRDB_LOAD_COLOR("color12",        termcol12);
+        XRDB_LOAD_COLOR("color13",        termcol13);
+        XRDB_LOAD_COLOR("color14",        termcol14);
+        XRDB_LOAD_COLOR("color15",        termcol15);
+        XRDB_LOAD_COLOR("color16",        termcol16);
+        XRDB_LOAD_COLOR("color17",        termcol17);
+        XRDB_LOAD_COLOR("color18",        termcol18);
+      }
+    }
+  }
+
+  XCloseDisplay(display);
 }
 
 void
@@ -3140,6 +3219,19 @@ systraytomon(Monitor *m) {
 }
 
 void
+xrdb(const Arg *arg)
+{
+  loadxrdb();
+  int i;
+  for (i = 0; i < LENGTH(colors); i++)
+                scheme[i] = drw_scm_create(drw, colors[i], 3);
+  for (i = 0; i < LENGTH(tagsel); i++)
+		        tagscheme[i] = drw_scm_create(drw, tagsel[i], 2);
+  focus(NULL);
+  arrange(NULL);
+}
+
+void
 zoom(const Arg *arg)
 {
 	Client *c = selmon->sel;
@@ -3165,6 +3257,8 @@ main(int argc, char *argv[])
 	if (!(xcon = XGetXCBConnection(dpy)))
 		die("dwm: cannot get xcb connection\n");
 	checkotherwm();
+        XrmInitialize();
+        loadxrdb();
 	setup();
 #ifdef __OpenBSD__
 	if (pledge("stdio rpath proc exec ps", NULL) == -1)
