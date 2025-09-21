@@ -14,7 +14,7 @@ static const int failonclear = 1;
 static const char * message = "Suckless: Software that sucks less.";
 
 /* text color */
-static const char * text_color = "#c0caf5";
+static const char * text_color = "#5f8787";
 
 /* text size (must be a valid size) */
 static const char * font_name = "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1";
@@ -49,3 +49,14 @@ static const int blurRadius=5;
 #define PIXELATION
 /*Set pixelation radius*/
 static const int pixelSize=5;
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "foreground",   STRING,  &colorname[INIT] },
+		{ "color4",       STRING,  &colorname[INPUT] },
+		{ "color17",      STRING,  &colorname[FAILED] },
+		{ "color1",       STRING,  &colorname[CAPS] },
+};
+
